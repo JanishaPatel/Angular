@@ -1,0 +1,61 @@
+<!-- <div class="container" style="justify-content: center"> -->
+<!-- <mat-card>
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card-title style="justify-content: center"
+          >Upload Image</mat-card-title
+        >
+      </div>
+    </div> -->
+<!-- <input type="file" (change)="onFileSelected($event)" />
+
+    <button (click)="uploadFile()">Upload File</button> -->
+<!-- <form [formGroup]="fileupload" (ngSubmit)="uploadFile()">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+           
+            <input type="file" (change)="onFileSelected($event)" />
+          </div>
+          <div class="col-md-6">
+            <button mat-raised-button color="accent" type="submit">
+              Upload Image
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </form> -->
+<!-- </mat-card> -->
+<!-- </div> -->
+
+<form [formGroup]="myForm">
+  <input
+    class="form-control"
+    formControlName="file"
+    type="file"
+    id="formFileSm"
+    (change)="onFileChange($event)"
+  />
+  <button (click)="uploadImage()">Upload</button>
+</form>
+<hr />
+<table>
+  <thead>
+    <tr>
+      <th>Images</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let obj of fileArr">
+      <td>
+        <img
+          [src]="obj.image ? imageDirectoryPath + obj.image : 'null'"
+          height="100px"
+          alt="no image "
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div></div>

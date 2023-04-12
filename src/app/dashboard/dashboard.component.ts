@@ -23,6 +23,13 @@ export class DashboardComponent implements OnInit {
     //   }
     // }
     localStorage.removeItem('token');
+    localStorage.clear();
+    // this.apicallService.logout().subscribe( (s:any) => {
+    this.router.navigate(['/login']);
+    //  }); 
+    // const success = this.apicallService.logout().subscribe((res:any) => {
+    //   console.log(res);
+    // });
   }
   ngOnInit() {}
 }

@@ -1,6 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
+
+export interface AuthResponseData {
+  idToken: string;
+  kind: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  registerd?: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,35 +37,18 @@ export class ApicallService {
 
     return this.http.post('http://localhost:3000/auth/register', userData);
   }
-  // gotoDashboard(token: any) {
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     Authorization: `Bearer ${token}`,
-  //   });
-  //   return this.http.get('http://localhost:3000/auth/login', {
-  //     headers: headers,
-  //   });
-  // }
-  // logout(userData: any) {
-  //   return this.http.delete(`http://localhost:3000/auth/logout/+ ${token}`);
-  // }
+  
+  login(email: string, password: string) {
+    console.log('under func');
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http
-      .post<{ token: string }>('/auth/login', {
-        username: username,
-        password: password,
-      })
-      .pipe(
-        map((result) => {
-          localStorage.setItem('access_token', result.token);
-          return true;
-        })
-      );
+    return this.http.post('http://localhost:3000/auth/login', {
+      email: email,
+      password: password,
+    });
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('token');
   }
 
   public get loggedIn(): boolean {

@@ -32,28 +32,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (
-    //   this.userRegistrationForm.valid &&
-    //   this.userRegistrationForm.value.password ===
-    //     this.confirmPassword.nativeElement.value
-    // ) {
-    //   console.log('user form value is ', this.userRegistrationForm.value);
-    //   this.apicallService
-    //     .registerUser(this.userRegistrationForm.value)
-    //     .pipe(first())
-    //     .subscribe(
-    //       (res: any) => {
-    //         if (res && res['status'] === 'Okay' && res['data']['_id']) {
-    //           this.router.navigate(['/login']);
-    //         }
-    //       },
-    //       (err: any) => {
-    //         if (err) {
-    //           console.log('We got an error in signup ');
-    //         }
-    //       }
-    //     );
-    // }
 
     var success = this.apicallService
       .registerUser(this.userRegistrationForm.value)

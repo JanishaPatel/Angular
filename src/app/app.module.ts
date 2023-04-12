@@ -22,10 +22,12 @@ import {MatMenuModule } from '@angular/material/menu';
 import {MatSidenavModule } from '@angular/material/sidenav';
 import {MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { ForgatePasswordComponent } from './forgate-password/forgate-password.component';
+import {  NgOtpInputModule } from 'ng-otp-input';
 
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, LoginComponent, DashboardComponent],
+  declarations: [AppComponent, SignupComponent, LoginComponent, DashboardComponent, ForgatePasswordComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,6 +49,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
+    NgOtpInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

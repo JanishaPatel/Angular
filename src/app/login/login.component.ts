@@ -12,47 +12,28 @@ export class LoginComponent implements OnInit {
   loginUserForm!: FormGroup;
   constructor(private apicallService: ApicallService, public router: Router) {
     this.loginUserForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
   }
-  ngOnInit(): void {}
-  onSubmit() {
-    // console.log(this.loginUserForm.value);
-    const val=this.loginUserForm.value;
-    if (this.loginUserForm.valid) {
-      console.log('in');
-      const user = this.apicallService.login(val.email,val.password);
-      // .subscribe((res: any) => {
-      //   console.log(res);
-      // });
-      console.log(user);
-      
-      // if (user) {
-      //   localStorage.setItem('token', user.token);
-      //   alert('You have successfully logged in');
-      //   this.router.navigate(['/dashboard']);
-      // } else {
-      //   alert('Login Failed');
-      // }
 
-      // this.apicallService.login(this.loginUserForm.value).subscribe(
-      //   (res: any) => {
-      //     if (
-      //       res &&
-      //       res['status'] === 'Okay' &&
-      //       res['data']['response'] &&
-      //       res['data']['authToken']
-      //     ) {
-      //       localStorage.setItem('token', res['data']['authToken']);
-      //       this.router.navigate(['/dashboard']);
-      //     }
-      //   },
-      //   (err) => {
-      //     console.log('We got an error in login ');
-      //   }
-      // );
+  onSubmit() {
+    const val = this.loginUserForm.value;
+    // if (this.loginUserForm.valid) {
+    // var user = this.apicallService.login(val.email, val.password);
+    // console.log("userinfo:",user);
+    var success = this.apicallService
+      .login(val.email, val.password)
+      .subscribe((res) => {
+        console.log(res);
+      });
+    if (success) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      console.log('failed to navigate to dashboard page');
     }
-    // console.log('user form value is ', this.loginUserForm.value);
+    // var token=localStorage.getItem('token');
+    // console.log(token,'token');
   }
+  ngOnInit(): void {}
 }

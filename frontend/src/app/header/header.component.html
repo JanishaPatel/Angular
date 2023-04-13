@@ -1,0 +1,75 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <!-- <mat-icon (click)="sidenav.toggle();">menu</mat-icon> -->
+      <!-- <mat-icon>{{ isMenuOpen ? "menu_open" : "menu" }}</mat-icon> -->
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <h1>LOGO</h1>
+    <!-- <button type="button" class="btn btn-danger ">Danger</button>   -->
+
+    <!-- <button mat-icon-button color="warn"></button> -->
+
+    <!-- <button mat-icon-button>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="logout icon"
+        fontIcon="logout"
+        [ariaSetSize]="50"
+        color="warn"
+      ></mat-icon>
+    </button> -->
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="true" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/login/user" *ngIf="!isAuthenticated">
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon></button
+        >Login</a
+      >
+      <a mat-list-item routerLink="/signup" *ngIf="!isAuthenticated">
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon></button
+        >User Signup</a
+      >
+
+      <a mat-list-item routerLink="/login/admin" *ngIf="!isAuthenticated">
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon></button
+        >Admin Login</a
+      >
+
+      <a mat-list-item routerLink="/admin" *ngIf="!isAuthenticated">
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon></button
+        >Admin Signup</a
+      >
+      <a mat-list-item routerLink="" *ngIf="isAuthenticated">Home</a>
+      <a mat-list-item routerLink="/add" *ngIf="isAuthenticated">Add Product</a>
+      <a mat-list-item routerLink="/update" *ngIf="isAuthenticated"
+        >Update Product</a
+      >
+      <a mat-list-item routerLink="/delete" *ngIf="isAuthenticated"
+        >Delete Product</a
+      >
+      <a
+        mat-list-item
+        routerLink="/login"
+        *ngIf="isAuthenticated"
+        (click)="logout()"
+      >
+        <button mat-icon-button>
+          <mat-icon>logout</mat-icon></button
+        >Logout</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
